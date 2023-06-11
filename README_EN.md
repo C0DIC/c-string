@@ -11,5 +11,6 @@ To use this library you need to define `CSTR_IMPLEMENTATION` in `.c` file
 ``` c
 // ...
 #define CSTR_IMPLEMENTATION
+#include "cstr.h"
 // ...
 ```

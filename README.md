@@ -11,5 +11,6 @@
 ``` c
 // ...
 #define CSTR_IMPLEMENTATION
+#include "cstr.h"
 // ...
 ```
