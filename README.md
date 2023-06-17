@@ -1,4 +1,4 @@
-# C-String
+# C String
 
 [English](README_EN.md) [Русский](README.md)
 
