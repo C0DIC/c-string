@@ -77,6 +77,18 @@ Returns 1 if string in uppercase, 0 otherwise
 */
 short cstr_isupper(char *string);
 
+/*
+Возвращает 1, если аргумент соответствует префиксу, иначе 0
+Return 1 if string starts with the prefix, 0 otherwise
+*/
+short cstr_startswith(char *prefix, char *string);
+
+/*
+Возвращает 1, если аргумент соответствует концу строки, иначе 0
+Return 1 if string ends with the suffix, 0 otherwise
+*/
+short cstr_endswith(char *suffix, char *string);
+
 
 #ifdef CSTR_IMPLEMENTATION
 
@@ -182,5 +194,44 @@ short cstr_isupper(char *string) {
 
     return CSTR_TRUE;
 };
+
+short cstr_startswith(char *prefix, char *string) {
+    CSTR_INT pos = 0;
+    CSTR_INT prefix_length = cstr_len(prefix);
+    CSTR_INT str_len = cstr_len(string);
+
+    if (prefix_length != 0 && prefix_length <= str_len) {
+        while (pos < prefix_length) {
+            if (string[pos] != prefix[pos])
+                return CSTR_FALSE;
+            pos++;
+        }
+
+        if (pos == prefix_length) return CSTR_TRUE;
+    }
+
+    return CSTR_FALSE;
+}
+
+short cstr_endswith(char *suffix, char *string) {
+    CSTR_INT suffix_length = cstr_len(suffix);
+    CSTR_INT str_len = cstr_len(string);
+    CSTR_INT pos = str_len - suffix_length;
+    CSTR_INT sfx_pos = 0;
+
+    if (suffix_length <= str_len) {
+        while (pos < str_len) {
+            if (string[pos] != suffix[sfx_pos])
+                return CSTR_FALSE;
+
+            pos++; sfx_pos++;
+        }
+
+        if (pos == str_len) return CSTR_TRUE;
+    }
+
+    return CSTR_FALSE;
+
+}
 
 #endif
